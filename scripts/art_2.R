@@ -1,6 +1,4 @@
-library(tidyverse)
-library(patchwork)
-library(extrafont)
+library(tidyverse) library(patchwork) library(extrafont)
 windowsFonts(Papyrus = windowsFont('Papyrus'))
 
 # Function to create circle data --------------------------------------------
