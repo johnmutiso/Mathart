@@ -22,17 +22,16 @@ mydata <-
 
 plot <- 
   ggplot(mydata) +
-  geom_path(aes(x, y, group = group), color = '#f8fc00', size = 0.5) +
+  geom_path(aes(x, y, group = group, color = group), size = 0.5, show.legend = F) +
   expand_limits(y = c(-7,-1)) +
+  scale_color_viridis_d() +
   labs(caption = '@johnmutiso\nmathart') + 
   coord_polar() +
   theme_void() +
-  theme(plot.background = element_rect(fill = 'black'),
-        plot.caption = element_text(family = 'Papyrus', size = 16, color = '#f8fc00'))
+  theme(plot.background = element_rect(fill = '#ba0a0f'),
+        plot.caption = element_text(family = 'Papyrus', size = 20, color = '#f8fc00'))
 
 
 # Save ---------------------------------------------------------------
 ggsave(plot = plot, path = './graphic/', dpi = 500, device = 'png', 
-       filename = 'art_5.png', width = 12, height = 12)
-
-
+       filename = 'art_6.png', width = 14, height = 14)

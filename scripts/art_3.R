@@ -8,7 +8,7 @@ x <- x_**2#define x var
 mydata <- data.frame(y = seq(-10,10,0.01))
 
 #iterating the x variable
-line_seq <- seq(0,200,1.5)
+line_seq <- seq(0,200,1)
 
 for(i in line_seq){
   col1 <- paste0('x1_', i)
@@ -31,6 +31,21 @@ plot <-
     theme_void() +
     theme(plot.caption = element_text(family = 'Papyrus', size = 12),
           plot.background = element_blank())
+# coloured plot
+n_groups <- mydata %>% distinct(group) %>% nrow()
+colorpalette <- grDevices::colorRampPalette(brewer.pal(8, 'Set1'))
+
+plot2 <- 
+  mydata %>% 
+  mutate(group = factor(group)) %>%
+  ggplot() +
+  geom_path(aes(x,y, group=group, col = group), 
+            alpha =0.9, size = 0.7, show.legend = F) +
+  scale_colour_manual(values = colorpalette(n_groups)) +
+  labs(caption = '@johnmutiso\nmathart') + 
+  theme_void() +
+  theme(plot.caption = element_text(family = 'Papyrus', size = 12),
+        plot.background = element_blank())
 
 # Save ---------------------------------------------------------------
 ggsave(plot = plot, path = './graphic/', dpi = 400, device = 'png', 
